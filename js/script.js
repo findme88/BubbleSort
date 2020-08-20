@@ -19,8 +19,14 @@
 // }
 
 const container = document.querySelector(".data-container");
+const btn = document.querySelector(".button");
 
-function generateBlocks(num = 20) {
+const reload = () => {
+    location.reload();
+};
+btn.addEventListener("click", reload);
+
+function generateBlocks(num = 22) {
   if (num && typeof num !== "number") {
     alert("First argument must be a typeof Number");
     return;
@@ -43,7 +49,7 @@ function generateBlocks(num = 20) {
 }
 
 function swap(el1, el2) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const style1 = window.getComputedStyle(el1);
     const style2 = window.getComputedStyle(el2);
 
@@ -54,7 +60,7 @@ function swap(el1, el2) {
     el2.style.transform = transform1;
 
     // Wait for the transition to end!
-    window.requestAnimationFrame(function() {
+    window.requestAnimationFrame(function () {
       setTimeout(() => {
         container.insertBefore(el2, el1);
         resolve();
@@ -74,7 +80,7 @@ async function bubbleSort(delay = 100) {
       blocks[j].style.backgroundColor = "#FF4949";
       blocks[j + 1].style.backgroundColor = "#FF4949";
 
-      await new Promise(resolve =>
+      await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
         }, delay)
